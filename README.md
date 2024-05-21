@@ -54,3 +54,5 @@ Modelo MobileNet:
 ```
 
 Con todo esto, ahora ya sabes en totalidad que hace este repositorio
+
+# Recuerda que este repositorio no tiene un servidor en Node, por lo que se debe abrir con la extension de visual studio code de Live server
