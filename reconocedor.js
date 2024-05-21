@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function classifyImage(image) {
         const predictions = await model.classify(image);
         result.textContent = `Predicción: ${predictions[0].className} - Probabilidad: ${(predictions[0].probability * 100).toFixed(2)}%`;
+        console.log(predictions[0].className, predictions[0].probability)
     }
 
     // Manejar el evento de cambio de archivo
@@ -32,4 +33,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cargar el modelo al cargar la página
     loadModel();
+    
 });

@@ -26,10 +26,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function aiMove(state) {
-        // Implement AI logic here using TensorFlow.js
-        // For simplicity, a random empty cell is chosen here
-        let emptyCells = state.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
-        return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        let bestScore = -Infinity;
+        let move;
+        for (let i = 0; i < state.length; i++) {
+            if (state[i] === null) {
+                state[i] = currentPlayer;
+                let score = minimax(state, 0, false);
+                state[i] = null;
+                if (score > bestScore) {
+                    bestScore = score;
+                    move = i;
+                }
+            }
+        }
+        return move;
+    }
+
+    function minimax(state, depth, isMaximizing) {
+        let result = checkWinner(state);
+        if (result !== null) {
+            if (result === 'O') {
+                return 10 - depth;
+            } else if (result === 'X') {
+                return depth - 10;
+            } else {
+                return 0;
+            }
+        }
+
+        if (isMaximizing) {
+            let bestScore = -Infinity;
+            for (let i = 0; i < state.length; i++) {
+                if (state[i] === null) {
+                    state[i] = 'O';
+                    let score = minimax(state, depth + 1, false);
+                    state[i] = null;
+                    bestScore = Math.max(score, bestScore);
+                }
+            }
+            return bestScore;
+        } else {
+            let bestScore = Infinity;
+            for (let i = 0; i < state.length; i++) {
+                if (state[i] === null) {
+                    state[i] = 'X';
+                    let score = minimax(state, depth + 1, true);
+                    state[i] = null;
+                    bestScore = Math.min(score, bestScore);
+                }
+            }
+            return bestScore;
+        }
     }
 
     function makeMove(index) {
@@ -62,4 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderBoard();
+ 
+
 });
