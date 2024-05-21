@@ -34,7 +34,7 @@ El de tateti, como el nombre indica, es un juego de "3 en raya" como se le llama
 Luego esta el otro archivo de imagenes, que ese es un archivo HTML que te permite subir una imagen, y usando la libreria de mobilnet y JavaScript, reconoce por nombre y por porcentaje de seguridad que imagen se esta cargando, el funcionamiento del programa es de la siguiente manera:
 
 ```
-TML/CSS:
+HTML/CSS:
 
     input type="file": Permite al usuario cargar una imagen.
     img id="image-preview": Muestra una vista previa de la imagen cargada.
